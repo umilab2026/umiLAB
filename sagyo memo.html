@@ -1,0 +1,809 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>umiLAB｜名護市・北部エリア IT サポート</title>
+<meta name="description" content="名護市・北部エリアのパソコン・Wi-Fi・ネットワークのお困りごとはumiLABへ。設定・修理・購入サポート・月額保守サービス。業界最安値で対応。">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root {
+  --deep:    #02246e;
+  --mid:     #004da2;
+  --light:   #009bca;
+  --cyan:    #00e6ff;
+  --soft:    #e0f7ff;
+  --orange:  #ff9614;
+  --green:   #14c878;
+  --red:     #dc3232;
+  --white:   #ffffff;
+  --sand:    #dbb44b;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Noto Sans JP', sans-serif;
+  background: var(--deep);
+  color: var(--soft);
+  overflow-x: hidden;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HEADER / NAV
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(2,36,110,0.92);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(0,230,255,0.2);
+  padding: 0 24px;
+  height: 64px;
+  display: flex; align-items: center; justify-content: space-between;
+}
+
+.logo {
+  display: flex; align-items: center; gap: 12px;
+  text-decoration: none;
+}
+
+.logo-circle {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: radial-gradient(circle at 40% 40%, #1a8ab4, #00369e);
+  border: 2px solid rgba(0,230,255,0.5);
+  display: flex; align-items: center; justify-content: center;
+  position: relative; overflow: hidden;
+}
+
+.logo-circle svg { width: 28px; height: 28px; }
+
+.logo-text { line-height: 1.1; }
+.logo-text .umi { font-size: 11px; color: var(--cyan); letter-spacing: 2px; }
+.logo-text .lab { font-family: 'Montserrat', sans-serif; font-size: 22px; font-weight: 900; color: var(--soft); }
+
+nav { display: flex; gap: 6px; }
+nav a {
+  color: var(--soft); text-decoration: none; font-size: 13px; font-weight: 700;
+  padding: 6px 12px; border-radius: 20px;
+  border: 1px solid transparent;
+  transition: all .2s;
+}
+nav a:hover, nav a.active {
+  color: var(--cyan);
+  border-color: rgba(0,230,255,0.4);
+  background: rgba(0,230,255,0.08);
+}
+
+.nav-line-btn {
+  background: var(--green) !important;
+  color: var(--deep) !important;
+  border-color: var(--green) !important;
+  font-weight: 900 !important;
+}
+.nav-line-btn:hover { opacity: .85; }
+
+.hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; padding: 4px; }
+.hamburger span { display: block; width: 24px; height: 2px; background: var(--soft); border-radius: 2px; transition: .3s; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   HERO
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#hero {
+  min-height: 100vh;
+  background: linear-gradient(180deg, #01195a 0%, #023688 40%, #004da2 70%, #0077b6 100%);
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  position: relative; overflow: hidden; padding-top: 64px;
+}
+
+/* 星 */
+.stars { position: absolute; inset: 0; pointer-events: none; }
+.star {
+  position: absolute; background: white; border-radius: 50%;
+  animation: twinkle var(--d) ease-in-out infinite alternate;
+}
+@keyframes twinkle { from { opacity: .2; } to { opacity: .9; } }
+
+/* 波アニメ */
+.wave-container {
+  position: absolute; bottom: 0; left: 0; right: 0; height: 200px;
+  pointer-events: none;
+}
+.wave {
+  position: absolute; bottom: 0; width: 200%; height: 100%;
+  background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230a3a8a' d='M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120Z'/%3E%3C/svg%3E") repeat-x bottom;
+  background-size: 720px 120px;
+}
+.wave1 { animation: wave1 8s linear infinite; opacity: .6; bottom: 30px; }
+.wave2 { animation: wave2 12s linear infinite; opacity: .4; bottom: 10px; }
+.wave3 { animation: wave1 6s linear infinite reverse; opacity: .3; bottom: 0; }
+@keyframes wave1 { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+@keyframes wave2 { from { transform: translateX(-50%); } to { transform: translateX(0); } }
+
+/* ヤシの木SVG */
+.palm { position: absolute; bottom: 60px; pointer-events: none; }
+.palm-left  { left: 2%;  transform-origin: bottom center; animation: sway 4s ease-in-out infinite; }
+.palm-right { right: 2%; transform-origin: bottom center; animation: sway 4s ease-in-out infinite reverse; transform: scaleX(-1); }
+@keyframes sway { 0%,100% { transform: rotate(-3deg); } 50% { transform: rotate(3deg); } }
+.palm-right { animation: swayR 4s ease-in-out infinite; }
+@keyframes swayR { 0%,100% { transform: scaleX(-1) rotate(-3deg); } 50% { transform: scaleX(-1) rotate(3deg); } }
+
+/* ロゴ大 */
+.hero-logo-wrap {
+  position: relative; z-index: 2; text-align: center;
+  animation: fadeUp .8s ease both;
+}
+@keyframes fadeUp { from { opacity:0; transform:translateY(30px); } to { opacity:1; transform:translateY(0); } }
+
+.hero-logo-circle {
+  width: 160px; height: 160px; border-radius: 50%; margin: 0 auto 20px;
+  background: radial-gradient(circle at 40% 35%, #1eb4d4 0%, #0066b8 50%, #003488 100%);
+  border: 3px solid rgba(0,230,255,0.5);
+  box-shadow: 0 0 60px rgba(0,230,255,0.3), inset 0 0 40px rgba(0,100,180,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.hero-logo-circle svg { width: 100px; height: 100px; }
+
+.hero-umi { font-size: 18px; color: var(--cyan); letter-spacing: 6px; font-style: italic; }
+.hero-lab { font-family: 'Montserrat', sans-serif; font-size: 72px; font-weight: 900; color: var(--white); line-height: 1; letter-spacing: -2px; }
+.hero-tagline { font-size: 16px; color: rgba(224,247,255,.8); margin-top: 12px; letter-spacing: 2px; }
+
+.hero-catch {
+  position: relative; z-index: 2; text-align: center; margin-top: 36px;
+  animation: fadeUp .8s .2s ease both;
+}
+.hero-catch h1 {
+  font-size: clamp(22px, 5vw, 38px); font-weight: 900; line-height: 1.5;
+  color: var(--white);
+}
+.hero-catch h1 span { color: var(--cyan); }
+.hero-catch p { font-size: 15px; color: rgba(224,247,255,.7); margin-top: 10px; }
+
+.hero-btns {
+  position: relative; z-index: 2; display: flex; gap: 16px; flex-wrap: wrap;
+  justify-content: center; margin-top: 32px;
+  animation: fadeUp .8s .4s ease both;
+}
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 14px 28px; border-radius: 50px; font-size: 15px; font-weight: 900;
+  text-decoration: none; cursor: pointer; border: none;
+  transition: all .25s; letter-spacing: 1px;
+}
+.btn-primary { background: var(--cyan); color: var(--deep); box-shadow: 0 4px 24px rgba(0,230,255,.4); }
+.btn-primary:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,230,255,.5); }
+.btn-line { background: var(--green); color: var(--white); box-shadow: 0 4px 24px rgba(20,200,120,.4); }
+.btn-line:hover { transform: translateY(-3px); }
+.btn-outline { background: transparent; color: var(--cyan); border: 2px solid var(--cyan); }
+.btn-outline:hover { background: rgba(0,230,255,.1); transform: translateY(-3px); }
+
+/* 島 */
+.island {
+  position: absolute; bottom: 55px; border-radius: 50%;
+  background: var(--sand); opacity: .8;
+}
+.island-l { left: 3%; width: 90px; height: 22px; }
+.island-r { right: 3%; width: 110px; height: 26px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SECTIONS共通
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+section { padding: 80px 20px; }
+.container { max-width: 960px; margin: 0 auto; }
+
+.section-title {
+  text-align: center; margin-bottom: 48px;
+}
+.section-title .label {
+  display: inline-block; font-size: 12px; letter-spacing: 3px; font-weight: 700;
+  color: var(--cyan); background: rgba(0,230,255,.1); border: 1px solid rgba(0,230,255,.3);
+  padding: 4px 16px; border-radius: 20px; margin-bottom: 12px;
+}
+.section-title h2 {
+  font-size: clamp(24px, 4vw, 36px); font-weight: 900; color: var(--white);
+}
+.section-title p { font-size: 15px; color: rgba(224,247,255,.7); margin-top: 8px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TROUBLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#trouble { background: linear-gradient(180deg, #004da2 0%, #02246e 100%); }
+
+.trouble-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 14px;
+}
+.trouble-card {
+  background: rgba(200,30,30,.2); border: 2px solid rgba(255,100,100,.4);
+  border-left: 5px solid #ff5a5a; border-radius: 16px; padding: 18px 20px;
+  transition: transform .2s, box-shadow .2s;
+  animation: fadeUp .6s ease both;
+}
+.trouble-card:hover { transform: translateY(-4px); box-shadow: 0 8px 32px rgba(220,50,50,.3); }
+.trouble-card .star { color: #ffca3a; font-size: 18px; margin-right: 6px; }
+.trouble-card h3 { font-size: 17px; font-weight: 900; color: var(--white); display: inline; }
+.trouble-card p { font-size: 13px; color: rgba(255,200,200,.8); margin-top: 8px; }
+
+.solve-banner {
+  margin-top: 32px; padding: 20px 24px; border-radius: 16px;
+  background: rgba(0,230,255,.08); border: 2px solid var(--green);
+  text-align: center; font-size: 20px; font-weight: 900; color: var(--green);
+  letter-spacing: 1px;
+}
+.solve-banner span { color: var(--white); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SERVICES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#services { background: linear-gradient(180deg, #02246e 0%, #004da2 100%); }
+
+.service-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 16px;
+}
+.service-card {
+  background: rgba(0,77,162,.5); border: 2px solid rgba(0,230,255,.2);
+  border-left: 5px solid var(--cyan); border-radius: 16px; padding: 22px;
+  transition: all .25s; position: relative; overflow: hidden;
+}
+.service-card::before {
+  content: ''; position: absolute; top: -50%; right: -50%;
+  width: 100%; height: 100%; border-radius: 50%;
+  background: radial-gradient(circle, rgba(0,230,255,.06) 0%, transparent 70%);
+  pointer-events: none;
+}
+.service-card:hover { transform: translateY(-4px); border-color: rgba(0,230,255,.6); box-shadow: 0 8px 32px rgba(0,230,255,.15); }
+.service-card.highlight { border-left-color: var(--orange); border-color: rgba(255,150,20,.3); }
+.service-card.highlight:hover { border-color: rgba(255,150,20,.6); box-shadow: 0 8px 32px rgba(255,150,20,.2); }
+
+.service-card h3 { font-size: 17px; font-weight: 900; color: var(--soft); margin-bottom: 8px; }
+.service-card h3 .ast { color: var(--cyan); margin-right: 4px; }
+.service-card.highlight h3 .ast { color: var(--orange); }
+.service-price {
+  font-size: 22px; font-weight: 900; color: var(--cyan); margin: 8px 0;
+}
+.service-card.highlight .service-price { color: var(--orange); }
+.service-note { font-size: 13px; color: rgba(224,247,255,.65); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MONTHLY PLAN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#plan { background: linear-gradient(180deg, #004da2 0%, #02246e 100%); }
+
+.plan-card {
+  background: rgba(2,36,110,.8); border: 3px solid var(--orange);
+  border-radius: 24px; padding: 40px; max-width: 700px; margin: 0 auto;
+  text-align: center; position: relative; overflow: hidden;
+}
+.plan-card::before {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 50% 0%, rgba(255,150,20,.1) 0%, transparent 60%);
+  pointer-events: none;
+}
+.plan-badge {
+  display: inline-block; background: var(--orange); color: var(--deep);
+  font-weight: 900; font-size: 14px; padding: 6px 20px; border-radius: 20px;
+  margin-bottom: 16px; letter-spacing: 1px;
+}
+.plan-price {
+  font-family: 'Montserrat', sans-serif; font-size: 64px; font-weight: 900;
+  color: var(--orange); line-height: 1;
+}
+.plan-price small { font-size: 22px; }
+.plan-sub { font-size: 14px; color: rgba(224,247,255,.7); margin: 8px 0 24px; }
+.plan-features {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 10px; text-align: left; margin: 24px 0;
+}
+.plan-feature {
+  display: flex; align-items: center; gap: 8px; font-size: 14px;
+  background: rgba(0,230,255,.06); border: 1px solid rgba(0,230,255,.15);
+  border-radius: 8px; padding: 10px 14px;
+}
+.plan-feature .ast { color: var(--cyan); font-weight: 900; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   PRICE TABLE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#price { background: linear-gradient(180deg, #02246e 0%, #004da2 100%); }
+
+.price-table { width: 100%; border-collapse: separate; border-spacing: 0 8px; }
+.price-table th {
+  background: rgba(0,230,255,.15); color: var(--cyan);
+  padding: 12px 20px; font-size: 13px; letter-spacing: 2px;
+  border-bottom: 2px solid rgba(0,230,255,.3);
+}
+.price-table td { padding: 14px 20px; font-size: 15px; background: rgba(0,77,162,.35); }
+.price-table tr td:first-child { border-radius: 10px 0 0 10px; font-weight: 700; border-left: 4px solid var(--cyan); }
+.price-table tr td:last-child { border-radius: 0 10px 10px 0; color: var(--orange); font-weight: 900; font-size: 17px; }
+.price-table tr:hover td { background: rgba(0,77,162,.6); }
+
+.price-note {
+  background: rgba(0,230,255,.06); border: 1px solid rgba(0,230,255,.2);
+  border-radius: 12px; padding: 16px 20px; margin-top: 24px; font-size: 14px;
+  color: rgba(224,247,255,.8); line-height: 1.8;
+}
+.price-note strong { color: var(--orange); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   AREA
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#area { background: linear-gradient(180deg, #004da2 0%, #02246e 100%); }
+
+.area-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+.area-card {
+  background: rgba(0,77,162,.4); border: 2px solid rgba(0,230,255,.25);
+  border-radius: 16px; padding: 24px; text-align: center;
+}
+.area-card h3 { font-size: 18px; font-weight: 900; color: var(--cyan); margin-bottom: 8px; }
+.area-card .price-tag { font-size: 28px; font-weight: 900; color: var(--orange); }
+.area-card p { font-size: 13px; color: rgba(224,247,255,.7); margin-top: 8px; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   CONTACT / SNS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+#contact { background: linear-gradient(180deg, #02246e 0%, #011040 100%); position: relative; overflow: hidden; }
+#contact .wave-bottom { position: absolute; bottom: 0; left: 0; right: 0; height: 120px; pointer-events: none; }
+
+.contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 20px; }
+
+.contact-card {
+  border-radius: 20px; padding: 32px 24px; text-align: center;
+  transition: transform .25s, box-shadow .25s;
+}
+.contact-card:hover { transform: translateY(-6px); }
+
+.contact-card.line-card {
+  background: linear-gradient(135deg, #06c755, #04a344);
+  box-shadow: 0 4px 32px rgba(6,199,85,.3);
+}
+.contact-card.ig-card {
+  background: linear-gradient(135deg, #833ab4, #fd1d1d, #fcb045);
+  box-shadow: 0 4px 32px rgba(253,29,29,.3);
+}
+.contact-card.mail-card {
+  background: rgba(0,77,162,.5); border: 2px solid rgba(0,230,255,.3);
+  box-shadow: 0 4px 32px rgba(0,230,255,.1);
+}
+
+.contact-card .icon-wrap {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 16px;
+  background: rgba(255,255,255,.2); display: flex; align-items: center; justify-content: center;
+  font-size: 28px;
+}
+.contact-card h3 { font-size: 20px; font-weight: 900; color: var(--white); margin-bottom: 8px; }
+.contact-card p { font-size: 13px; color: rgba(255,255,255,.8); margin-bottom: 16px; }
+.contact-card a {
+  display: inline-block; padding: 10px 24px; border-radius: 50px;
+  background: rgba(255,255,255,.25); color: var(--white); text-decoration: none;
+  font-weight: 900; font-size: 14px; transition: background .2s;
+}
+.contact-card a:hover { background: rgba(255,255,255,.4); }
+
+.qr-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; max-width: 500px; margin: 40px auto 0; text-align: center; }
+.qr-box { background: rgba(0,77,162,.4); border: 2px solid rgba(0,230,255,.25); border-radius: 16px; padding: 20px; }
+.qr-box img { width: 100%; max-width: 180px; border-radius: 8px; }
+.qr-box p { font-size: 13px; color: var(--cyan); margin-top: 10px; font-weight: 700; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FOOTER
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+footer {
+  background: #010e2e; padding: 40px 24px 24px;
+  text-align: center; border-top: 1px solid rgba(0,230,255,.15);
+}
+footer .footer-logo { font-family: 'Montserrat', sans-serif; font-size: 28px; font-weight: 900; color: var(--soft); }
+footer .footer-logo span { color: var(--cyan); font-size: 14px; font-family: 'Noto Sans JP', sans-serif; display: block; margin-top: 2px; }
+footer p { font-size: 12px; color: rgba(224,247,255,.4); margin-top: 16px; }
+footer .footer-links { display: flex; gap: 16px; justify-content: center; margin: 16px 0; flex-wrap: wrap; }
+footer .footer-links a { font-size: 13px; color: rgba(224,247,255,.6); text-decoration: none; }
+footer .footer-links a:hover { color: var(--cyan); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FLOATING LINE BTN
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.float-line {
+  position: fixed; bottom: 24px; right: 20px; z-index: 99;
+  background: var(--green); color: var(--white);
+  width: 60px; height: 60px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 26px; box-shadow: 0 4px 20px rgba(20,200,120,.5);
+  text-decoration: none; transition: transform .2s;
+  animation: pulse 2s ease-in-out infinite;
+}
+.float-line:hover { transform: scale(1.1); }
+@keyframes pulse { 0%,100% { box-shadow: 0 4px 20px rgba(20,200,120,.5); } 50% { box-shadow: 0 4px 36px rgba(20,200,120,.8); } }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLL REVEAL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.reveal { opacity: 0; transform: translateY(24px); transition: opacity .6s ease, transform .6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MOBILE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 768px) {
+  nav { display: none; flex-direction: column; position: fixed; top: 64px; left: 0; right: 0;
+    background: rgba(2,36,110,.97); padding: 20px; gap: 8px; border-bottom: 1px solid rgba(0,230,255,.2); }
+  nav.open { display: flex; }
+  nav a { font-size: 16px; padding: 12px 16px; }
+  .hamburger { display: flex; }
+  .hero-lab { font-size: 52px; }
+  .plan-features { grid-template-columns: 1fr; }
+  .area-grid { grid-template-columns: 1fr; }
+  .price-table { font-size: 13px; }
+  .price-table td, .price-table th { padding: 10px 12px; }
+  .palm { display: none; }
+}
+</style>
+</head>
+<body>
+
+<!-- ヘッダー -->
+<header>
+  <a href="#hero" class="logo">
+    <div class="logo-circle">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <!-- House -->
+        <polyline points="50,15 22,38 22,72 78,72 78,38 50,15" stroke="rgba(224,247,255,0.9)" stroke-width="5" fill="none" stroke-linejoin="round"/>
+        <rect x="38" y="52" width="24" height="20" stroke="rgba(224,247,255,0.9)" stroke-width="4" fill="none"/>
+        <!-- Network -->
+        <circle cx="50" cy="44" r="5" fill="#00e6ff"/>
+        <circle cx="50" cy="28" r="3.5" fill="#00e6ff"/>
+        <circle cx="36" cy="50" r="3.5" fill="#00e6ff"/>
+        <circle cx="64" cy="50" r="3.5" fill="#00e6ff"/>
+        <line x1="50" y1="39" x2="50" y2="31.5" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="45" y1="46" x2="39.5" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="55" y1="46" x2="60.5" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="39.5" y1="50" x2="60.5" y2="50" stroke="#00e6ff" stroke-width="1.5" opacity="0.6"/>
+      </svg>
+    </div>
+    <div class="logo-text">
+      <div class="umi">umi</div>
+      <div class="lab">LAB</div>
+    </div>
+  </a>
+  <nav id="nav">
+    <a href="#trouble">お困りごと</a>
+    <a href="#services">サービス</a>
+    <a href="#plan">月額プラン</a>
+    <a href="#price">料金表</a>
+    <a href="#area">対応エリア</a>
+    <a href="#contact" class="nav-line-btn">LINE相談</a>
+  </nav>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()">
+    <span></span><span></span><span></span>
+  </div>
+</header>
+
+<!-- HERO -->
+<section id="hero">
+  <!-- 星 -->
+  <div class="stars" id="stars"></div>
+
+  <!-- 左ヤシ -->
+  <div class="palm palm-left">
+    <svg width="120" height="220" viewBox="0 0 120 220">
+      <path d="M60 220 Q58 180 55 150 Q53 120 56 90" stroke="#8B5E2A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q20 70 5 40 Q30 50 50 75" stroke="#1a9a40" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q15 100 0 80 Q25 85 50 100" stroke="#1a9a40" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q40 60 55 30 Q55 60 58 85" stroke="#1a9a40" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q85 65 100 40 Q80 62 62 88" stroke="#1a9a40" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q95 90 115 75 Q88 88 62 95" stroke="#1a9a40" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="38" cy="100" r="6" fill="#8B3A10" opacity="0.8"/>
+      <circle cx="52" cy="108" r="6" fill="#8B3A10" opacity="0.8"/>
+      <circle cx="66" cy="103" r="5" fill="#8B3A10" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <!-- 右ヤシ -->
+  <div class="palm palm-right">
+    <svg width="120" height="220" viewBox="0 0 120 220">
+      <path d="M60 220 Q58 180 55 150 Q53 120 56 90" stroke="#8B5E2A" stroke-width="10" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q20 70 5 40 Q30 50 50 75" stroke="#1a9a40" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q15 100 0 80 Q25 85 50 100" stroke="#1a9a40" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q40 60 55 30 Q55 60 58 85" stroke="#1a9a40" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q85 65 100 40 Q80 62 62 88" stroke="#1a9a40" stroke-width="7" fill="none" stroke-linecap="round"/>
+      <path d="M56 90 Q95 90 115 75 Q88 88 62 95" stroke="#1a9a40" stroke-width="6" fill="none" stroke-linecap="round"/>
+      <circle cx="38" cy="100" r="6" fill="#8B3A10" opacity="0.8"/>
+      <circle cx="52" cy="108" r="6" fill="#8B3A10" opacity="0.8"/>
+      <circle cx="66" cy="103" r="5" fill="#8B3A10" opacity="0.8"/>
+    </svg>
+  </div>
+
+  <div class="island island-l"></div>
+  <div class="island island-r"></div>
+
+  <div class="hero-logo-wrap">
+    <div class="hero-logo-circle">
+      <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <polyline points="50,12 18,36 18,74 82,74 82,36 50,12" stroke="rgba(224,247,255,0.9)" stroke-width="4" fill="none" stroke-linejoin="round"/>
+        <rect x="36" y="52" width="28" height="22" stroke="rgba(224,247,255,0.9)" stroke-width="3.5" fill="none"/>
+        <circle cx="50" cy="42" r="6" fill="#00e6ff"/>
+        <circle cx="50" cy="24" r="4" fill="#00e6ff"/>
+        <circle cx="32" cy="50" r="4" fill="#00e6ff"/>
+        <circle cx="68" cy="50" r="4" fill="#00e6ff"/>
+        <circle cx="38" cy="62" r="3" fill="#00e6ff" opacity="0.7"/>
+        <circle cx="62" cy="62" r="3" fill="#00e6ff" opacity="0.7"/>
+        <line x1="50" y1="36" x2="50" y2="28" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="44" y1="44" x2="36" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="56" y1="44" x2="64" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="36" y1="50" x2="64" y2="50" stroke="#00e6ff" stroke-width="1.5" opacity="0.5"/>
+      </svg>
+    </div>
+    <div class="hero-umi">umi</div>
+    <div class="hero-lab">LAB</div>
+    <div class="hero-tagline">名護市・北部エリア IT サポート</div>
+  </div>
+
+  <div class="hero-catch">
+    <h1>パソコン・Wi-Fi・ネットワーク<br><span>お困りごとはお任せください</span></h1>
+    <p>設定・修理・購入サポート・月額保守サービス ／ 業界最安値で対応</p>
+  </div>
+
+  <div class="hero-btns">
+    <a href="https://lin.ee/n0T3WqR" class="btn btn-line" target="_blank">&#x1F4AC; LINEで相談する</a>
+    <a href="#services" class="btn btn-primary">サービスを見る</a>
+    <a href="#price" class="btn btn-outline">料金表</a>
+  </div>
+
+  <!-- 波 -->
+  <div class="wave-container">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </div>
+</section>
+
+<!-- お困りごと -->
+<section id="trouble">
+  <div class="container">
+    <div class="section-title reveal">
+      <div class="label">TROUBLE</div>
+      <h2>こんなお困り、ありませんか？</h2>
+      <p>名護市・北部エリアの皆さまのリアルなお困りごとに対応します</p>
+    </div>
+    <div class="trouble-grid">
+      <div class="trouble-card reveal"><span class="star">＊</span><h3>パソコンが起動しない！</h3><p>電源は入るのに画面が真っ暗…</p></div>
+      <div class="trouble-card reveal"><span class="star">＊</span><h3>Wi-Fiに繋がらない！</h3><p>設定画面がよく分からない</p></div>
+      <div class="trouble-card reveal"><span class="star">＊</span><h3>メールの設定ができない！</h3><p>アカウント追加どうやるの？</p></div>
+      <div class="trouble-card reveal"><span class="star">＊</span><h3>プリンターが動かない！</h3><p>買ったのに使えない状態…</p></div>
+      <div class="trouble-card reveal"><span class="star">＊</span><h3>パソコンの動きが遅い！</h3><p>何をやっても固まってしまう</p></div>
+      <div class="trouble-card reveal"><span class="star">＊</span><h3>新しいPCに買い替えたい！</h3><p>でも何を選べばいいか不明…</p></div>
+    </div>
+    <div class="solve-banner reveal">
+      <span>＊ umiLABが</span>全部解決します！<span> ＊</span>
+    </div>
+  </div>
+</section>
+
+<!-- サービス -->
+<section id="services">
+  <div class="container">
+    <div class="section-title reveal">
+      <div class="label">SERVICES</div>
+      <h2>サービス内容</h2>
+      <p>パソコン・プリンター・ネットワーク、販売から設定・修理まで全対応</p>
+    </div>
+    <div class="service-grid">
+      <div class="service-card highlight reveal">
+        <h3><span class="ast">＊</span>PCセットアップ・設定</h3>
+        <div class="service-price">¥5,000〜</div>
+        <div class="service-note">メール・Office設定含む。新PC購入後の初期設定もお任せ</div>
+      </div>
+      <div class="service-card highlight reveal">
+        <h3><span class="ast">＊</span>Wi-Fiルーター設定</h3>
+        <div class="service-price">¥7,000〜</div>
+        <div class="service-note">ルーター側・端末側どちらも対応。繋がらない原因を調査</div>
+      </div>
+      <div class="service-card reveal">
+        <h3><span class="ast">＊</span>メール・Office設定</h3>
+        <div class="service-price">¥2,000〜</div>
+        <div class="service-note">各種メールソフト・Officeアカウント設定に対応</div>
+      </div>
+      <div class="service-card reveal">
+        <h3><span class="ast">＊</span>修理・症状診断</h3>
+        <div class="service-price">無料診断</div>
+        <div class="service-note">診断・見積もり無料。できるだけ安く対応します</div>
+      </div>
+      <div class="service-card highlight reveal">
+        <h3><span class="ast">＊</span>PC・プリンター購入</h3>
+        <div class="service-price">見積もり無料</div>
+        <div class="service-note">選定から購入・設置・設定まで全てお任せ。業者最安値</div>
+      </div>
+      <div class="service-card reveal">
+        <h3><span class="ast">＊</span>データ復元・バックアップ</h3>
+        <div class="service-price">要相談</div>
+        <div class="service-note">大切なデータの復元・定期バックアップ設定に対応</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 月額プラン -->
+<section id="plan">
+  <div class="container">
+    <div class="section-title reveal">
+      <div class="label">MONTHLY PLAN</div>
+      <h2>umiLAB 月額保守サービス</h2>
+      <p>業界最安値。いつでも相談できる安心のサポートプラン</p>
+    </div>
+    <div class="plan-card reveal">
+      <div class="plan-badge">＊ 月額プラン  業界最安値！</div>
+      <div class="plan-price">¥<span style="font-size:64px">5,000</span><small>／月</small></div>
+      <div class="plan-sub">PC1台から対応可能　個人・法人問わずOK</div>
+      <div class="plan-features">
+        <div class="plan-feature"><span class="ast">＊</span>パソコン不具合・設定</div>
+        <div class="plan-feature"><span class="ast">＊</span>ネットワークの不具合</div>
+        <div class="plan-feature"><span class="ast">＊</span>Excel・PDF・Office関係</div>
+        <div class="plan-feature"><span class="ast">＊</span>メール・ホームページ</div>
+        <div class="plan-feature"><span class="ast">＊</span>全トラブル現場対応</div>
+        <div class="plan-feature"><span class="ast">＊</span>他社見積もりより安く</div>
+      </div>
+      <a href="https://lin.ee/n0T3WqR" class="btn btn-line" target="_blank" style="margin-top:8px">&#x1F4AC; LINEで詳細を聞く</a>
+    </div>
+  </div>
+</section>
+
+<!-- 料金表 -->
+<section id="price">
+  <div class="container">
+    <div class="section-title reveal">
+      <div class="label">PRICE</div>
+      <h2>料金表</h2>
+      <p>税込・現金のみ。他社見積もりがあればそれより安く対応します</p>
+    </div>
+    <div class="reveal">
+      <table class="price-table">
+        <thead>
+          <tr><th style="border-radius:10px 0 0 0">サービス内容</th><th style="border-radius:0 10px 0 0">料金</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>PCセットアップ（メール・Office設定含む）</td><td>¥5,000〜</td></tr>
+          <tr><td>Wi-Fiルーター設定</td><td>¥7,000〜</td></tr>
+          <tr><td>メール設定</td><td>¥2,000〜</td></tr>
+          <tr><td>症状診断・見積もり</td><td>無料</td></tr>
+          <tr><td>PC・プリンター購入サポート</td><td>見積もり無料</td></tr>
+          <tr><td>出張料（名護エリア）</td><td>無料</td></tr>
+          <tr><td>出張料（北部エリア）</td><td>¥1,500〜</td></tr>
+          <tr><td>月額保守サービス</td><td>¥5,000／月</td></tr>
+        </tbody>
+      </table>
+      <div class="price-note">
+        <strong>＊ 支払い方法：</strong>現金のみ（税込）<br>
+        <strong>＊ 部品代：</strong>別途実費となります<br>
+        <strong>＊ 他社見積もり：</strong>お持ちの見積もりより安く対応します！<br>
+        <strong>＊ 修理・購入：</strong>状況確認後すぐに見積もりをご提示。ご検討の上ご判断ください
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 対応エリア -->
+<section id="area">
+  <div class="container">
+    <div class="section-title reveal">
+      <div class="label">SERVICE AREA</div>
+      <h2>対応エリア</h2>
+      <p>名護市を拠点に北部エリア全域に対応しています</p>
+    </div>
+    <div class="area-grid reveal">
+      <div class="area-card">
+        <h3>＊ 名護市エリア</h3>
+        <div class="price-tag">出張料 無料</div>
+        <p>名護市内は出張料無料でお伺いします</p>
+      </div>
+      <div class="area-card">
+        <h3>＊ 北部エリア</h3>
+        <div class="price-tag">¥1,500〜</div>
+        <p>恩納村・本部町・今帰仁村・国頭村など北部全域</p>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:24px;font-size:14px;color:rgba(224,247,255,.6)" class="reveal">
+      ＊ エリア外の方もまずはご相談ください。業界経験10年以上の実績でお客様に寄り添います。
+    </div>
+  </div>
+</section>
+
+<!-- お問い合わせ -->
+<section id="contact">
+  <div class="container">
+    <div class="section-title reveal">
+      <div class="label">CONTACT</div>
+      <h2>お気軽にご連絡ください</h2>
+      <p>小さなことでもお気軽に。作業中・夜間は返信が遅れる場合があります</p>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-card line-card reveal">
+        <div class="icon-wrap">&#x1F4AC;</div>
+        <h3>LINE公式</h3>
+        <p>お困りの内容・写真・お住まいを送るだけ。急ぎの方は「急ぎ」と一言添えて</p>
+        <a href="https://lin.ee/n0T3WqR" target="_blank">友だち追加はこちら</a>
+      </div>
+      <div class="contact-card ig-card reveal">
+        <div class="icon-wrap">&#x1F4F8;</div>
+        <h3>Instagram</h3>
+        <p>最新情報・お役立ち情報を発信中。DMでのご相談もOK</p>
+        <a href="https://www.instagram.com/umilab.nago2026/" target="_blank">@umilab.nago2026 を開く</a>
+      </div>
+      <div class="contact-card mail-card reveal">
+        <div class="icon-wrap">&#x2709;&#xFE0F;</div>
+        <h3>メール</h3>
+        <p>法人・企業様からのお問い合わせ、見積もり依頼はメールでも承ります</p>
+        <a href="mailto:umi.nago2026@gmail.com">umi.nago2026@gmail.com</a>
+      </div>
+    </div>
+
+    <div class="qr-grid reveal">
+      <div class="qr-box">
+        <img src="IMG_9182.PNG" alt="Instagram QR" onerror="this.style.display='none'">
+        <p>＊ Instagram QR</p>
+      </div>
+      <div class="qr-box">
+        <img src="IMG_9183.PNG" alt="LINE QR" onerror="this.style.display='none'">
+        <p>＊ LINE QR</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- フッター -->
+<footer>
+  <div class="footer-logo">
+    umiLAB
+    <span>名護市・北部エリア IT サポート</span>
+  </div>
+  <div class="footer-links">
+    <a href="#trouble">お困りごと</a>
+    <a href="#services">サービス</a>
+    <a href="#plan">月額プラン</a>
+    <a href="#price">料金表</a>
+    <a href="#area">対応エリア</a>
+    <a href="#contact">お問い合わせ</a>
+  </div>
+  <p>＊ <a href="mailto:umi.nago2026@gmail.com" style="color:var(--cyan);text-decoration:none">umi.nago2026@gmail.com</a>　＊ <a href="https://www.instagram.com/umilab.nago2026/" target="_blank" style="color:var(--cyan);text-decoration:none">@umilab.nago2026</a></p>
+  <p style="margin-top:8px">&copy; 2026 umiLAB All Rights Reserved.</p>
+</footer>
+
+<!-- フローティングLINEボタン -->
+<a href="https://lin.ee/n0T3WqR" class="float-line" target="_blank" title="LINEで相談">&#x1F4AC;</a>
+
+<script>
+// 星生成
+const starsEl = document.getElementById('stars');
+for (let i = 0; i < 80; i++) {
+  const s = document.createElement('div');
+  s.className = 'star';
+  const sz = Math.random() * 2.5 + 0.5;
+  s.style.cssText = `width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+1).toFixed(1)}s;animation-delay:${(Math.random()*4).toFixed(1)}s`;
+  starsEl.appendChild(s);
+}
+
+// ハンバーガー
+function toggleNav() {
+  document.getElementById('nav').classList.toggle('open');
+}
+
+// スクロールリビール
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.1 });
+reveals.forEach(r => observer.observe(r));
+
+// ナビアクティブ
+const sections = document.querySelectorAll('section[id]');
+window.addEventListener('scroll', () => {
+  let cur = '';
+  sections.forEach(s => { if (window.scrollY >= s.offsetTop - 80) cur = s.id; });
+  document.querySelectorAll('nav a').forEach(a => {
+    a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+  });
+});
+</script>
+</body>
+</html>
