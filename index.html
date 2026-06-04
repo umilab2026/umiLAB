@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>umiLAB｜名護市・北部エリア IT サポート</title>
+<meta name="description" content="名護市・北部エリアのパソコン・Wi-Fi・ネットワークのお困りごとはumiLABへ。設定・修理・購入サポート・月額保守サービス。業界最安値で対応。">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;700;900&family=Montserrat:wght@700;900&display=swap" rel="stylesheet">
+<style>
+:root{
+  --deep:#02246e;--mid:#004da2;--light:#009bca;
+  --cyan:#00e6ff;--soft:#e0f7ff;--orange:#ff9614;
+  --green:#14c878;--red:#dc3232;--white:#fff;--sand:#dbb44b;
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;}
+body{font-family:'Noto Sans JP',sans-serif;background:var(--deep);color:var(--soft);overflow-x:hidden;}
+
+/* HEADER */
+header{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(2,36,110,.93);backdrop-filter:blur(12px);border-bottom:2px solid rgba(0,230,255,.2);padding:0 20px;height:64px;display:flex;align-items:center;justify-content:space-between;}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;}
+.logo-circle{width:42px;height:42px;border-radius:50%;background:radial-gradient(circle at 40% 40%,#00d4ff,#0066cc);border:2px solid rgba(0,230,255,.5);display:flex;align-items:center;justify-content:center;}
+.logo-circle svg{width:26px;height:26px;}
+.logo-text .umi{font-size:10px;color:var(--cyan);letter-spacing:2px;}
+.logo-text .lab{font-family:'Montserrat',sans-serif;font-size:20px;font-weight:900;color:var(--soft);}
+nav{display:flex;gap:4px;}
+nav a{color:var(--soft);text-decoration:none;font-size:12px;font-weight:700;padding:6px 10px;border-radius:20px;border:1px solid transparent;transition:all .2s;}
+nav a:hover{color:var(--cyan);border-color:rgba(0,230,255,.4);background:rgba(0,230,255,.08);}
+.nav-line{background:var(--green)!important;color:var(--deep)!important;font-weight:900!important;}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;}
+.hamburger span{display:block;width:24px;height:2px;background:var(--soft);border-radius:2px;}
+
+/* HERO */
+#hero{min-height:100vh;background:linear-gradient(180deg,#01195a 0%,#023688 40%,#004da2 70%,#0077b6 100%);display:flex;flex-direction:column;align-items:center;justify-content:center;position:relative;overflow:hidden;padding-top:64px;}
+.stars{position:absolute;inset:0;pointer-events:none;}
+.star{position:absolute;background:white;border-radius:50%;animation:twinkle var(--d) ease-in-out infinite alternate;}
+@keyframes twinkle{from{opacity:.2}to{opacity:.9}}
+.wave-container{position:absolute;bottom:0;left:0;right:0;height:180px;pointer-events:none;}
+.wave{position:absolute;bottom:0;width:200%;height:100%;background-size:720px 120px;background-repeat:repeat-x;}
+.wave1{animation:wave1 8s linear infinite;opacity:.9;bottom:30px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%230a3a8a' d='M0,60 C240,100 480,20 720,60 C960,100 1200,20 1440,60 L1440,120 L0,120Z'/%3E%3C/svg%3E");}
+.wave2{animation:wave2 12s linear infinite;opacity:.6;bottom:10px;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%23004da2' d='M0,70 C200,30 400,90 720,70 C1040,50 1200,90 1440,70 L1440,120 L0,120Z'/%3E%3C/svg%3E");}
+.wave3{animation:wave1 6s linear infinite reverse;opacity:.4;bottom:0;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1440 120'%3E%3Cpath fill='%2300b4d8' d='M0,80 C300,40 600,100 720,80 C840,60 1100,100 1440,80 L1440,120 L0,120Z'/%3E%3C/svg%3E");}
+@keyframes wave1{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+@keyframes wave2{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+.palm{position:absolute;bottom:55px;pointer-events:none;}
+.palm-left{left:0%;animation:swayL 5s ease-in-out infinite;}
+.palm-left2{left:8%;animation:swayL 6.5s ease-in-out infinite;animation-delay:.8s;}
+.palm-right{right:0%;animation:swayR 5s ease-in-out infinite;}
+.palm-right2{right:8%;animation:swayR 7s ease-in-out infinite;animation-delay:.5s;}
+@keyframes swayL{0%,100%{transform-origin:bottom center;transform:rotate(-3deg)}50%{transform-origin:bottom center;transform:rotate(3deg)}}
+@keyframes swayR{0%,100%{transform-origin:bottom center;transform:scaleX(-1) rotate(-3deg)}50%{transform-origin:bottom center;transform:scaleX(-1) rotate(3deg)}}
+.island{position:absolute;bottom:52px;border-radius:50%;z-index:2;}
+.island-l{left:3%;width:130px;height:30px;background:linear-gradient(180deg,#f0c84a,#c8962a);box-shadow:0 4px 16px rgba(200,150,20,.4);}
+.island-r{right:3%;width:150px;height:34px;background:linear-gradient(180deg,#f0c84a,#c8962a);box-shadow:0 4px 16px rgba(200,150,20,.4);}
+.bougen{position:absolute;bottom:70px;pointer-events:none;opacity:.85;}
+.bird{position:absolute;opacity:.55;animation:fly var(--fd) ease-in-out infinite alternate;}
+@keyframes fly{from{transform:translateX(0) translateY(0)}to{transform:translateX(var(--fx)) translateY(-10px)}}
+.sparkle{position:absolute;border-radius:50%;background:rgba(255,255,255,.8);animation:sp var(--sd) ease-in-out infinite alternate;}
+@keyframes sp{from{opacity:.05;transform:scale(.4)}to{opacity:.85;transform:scale(1.3)}}
+.hero-logo-wrap{position:relative;z-index:2;text-align:center;animation:fadeUp .8s ease both;}
+@keyframes fadeUp{from{opacity:0;transform:translateY(30px)}to{opacity:1;transform:translateY(0)}}
+.hero-logo-circle{width:140px;height:140px;border-radius:50%;margin:0 auto 16px;background:radial-gradient(circle at 40% 35%,#1eb4d4,#0066b8 50%,#003488);border:3px solid rgba(0,230,255,.5);box-shadow:0 0 60px rgba(0,230,255,.3);display:flex;align-items:center;justify-content:center;}
+.hero-logo-circle svg{width:90px;height:90px;}
+.hero-umi{font-size:16px;color:var(--cyan);letter-spacing:6px;font-style:italic;}
+.hero-lab{font-family:'Montserrat',sans-serif;font-size:64px;font-weight:900;color:var(--white);line-height:1;}
+.hero-tagline{font-size:13px;color:rgba(224,247,255,.8);margin-top:10px;letter-spacing:2px;}
+.hero-catch{position:relative;z-index:2;text-align:center;margin-top:28px;padding:0 20px;animation:fadeUp .8s .2s ease both;}
+.hero-catch h1{font-size:clamp(18px,4.5vw,32px);font-weight:900;line-height:1.55;color:var(--white);}
+.hero-catch h1 span{color:var(--cyan);}
+.hero-catch p{font-size:13px;color:rgba(224,247,255,.75);margin-top:8px;}
+.hero-btns{position:relative;z-index:2;display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:24px;animation:fadeUp .8s .35s ease both;}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 22px;border-radius:50px;font-size:14px;font-weight:900;text-decoration:none;border:none;cursor:pointer;transition:all .25s;letter-spacing:.5px;}
+.btn-primary{background:var(--cyan);color:var(--deep);box-shadow:0 4px 20px rgba(0,230,255,.4);}
+.btn-primary:hover{transform:translateY(-3px);}
+.btn-line{background:var(--green);color:var(--white);box-shadow:0 4px 20px rgba(20,200,120,.4);}
+.btn-line:hover{transform:translateY(-3px);}
+.btn-outline{background:rgba(255,255,255,.12);color:var(--soft);border:2px solid rgba(0,230,255,.5);backdrop-filter:blur(4px);}
+.btn-outline:hover{background:rgba(0,230,255,.15);transform:translateY(-3px);}
+
+/* SECTIONS */
+section{padding:72px 20px;}
+.container{max-width:960px;margin:0 auto;}
+.section-title{text-align:center;margin-bottom:40px;}
+.section-title .label{display:inline-block;font-size:11px;letter-spacing:3px;font-weight:700;color:var(--cyan);background:rgba(0,230,255,.1);border:1px solid rgba(0,230,255,.3);padding:4px 14px;border-radius:20px;margin-bottom:10px;}
+.section-title h2{font-size:clamp(22px,3.5vw,32px);font-weight:900;color:var(--white);}
+.section-title p{font-size:13px;color:rgba(224,247,255,.65);margin-top:6px;}
+
+/* TROUBLE */
+#trouble{background:linear-gradient(180deg,#004da2 0%,#02246e 100%);}
+.trouble-list{display:flex;flex-direction:column;gap:2px;}
+.trouble-link{display:flex;align-items:center;justify-content:space-between;padding:16px 20px;text-decoration:none;color:var(--soft);font-size:16px;font-weight:700;border-bottom:1px solid rgba(255,255,255,.1);transition:all .2s;border-radius:8px;}
+.trouble-link:hover{background:rgba(255,255,255,.08);padding-left:28px;color:var(--cyan);}
+.trouble-link .arr{color:var(--cyan);font-size:20px;flex-shrink:0;margin-left:10px;}
+.solve-banner{margin-top:28px;padding:18px 24px;border-radius:16px;background:rgba(0,230,255,.08);border:2px solid var(--green);text-align:center;font-size:19px;font-weight:900;color:var(--green);}
+.solve-banner span{color:var(--white);}
+
+/* モーダル */
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(1,16,64,.92);z-index:200;overflow-y:auto;padding:20px;}
+.modal-overlay.open{display:flex;align-items:flex-start;justify-content:center;}
+.modal{background:linear-gradient(160deg,#0077b6,#023e8a);border:2px solid rgba(0,230,255,.3);border-radius:20px;max-width:580px;width:100%;padding:28px 22px;margin:auto;position:relative;animation:fadeUp .3s ease;}
+.modal-close{position:absolute;top:14px;right:14px;background:rgba(255,255,255,.1);border:none;color:var(--soft);font-size:20px;width:34px;height:34px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;}
+.modal-close:hover{background:rgba(220,50,50,.4);}
+.modal h2{font-size:20px;font-weight:900;color:var(--cyan);margin-bottom:6px;}
+.modal .modal-sub{font-size:12px;color:rgba(224,247,255,.6);margin-bottom:20px;border-bottom:1px solid rgba(0,230,255,.2);padding-bottom:14px;}
+.symptom-list{display:flex;flex-direction:column;gap:10px;}
+.symptom-item{background:rgba(220,50,50,.12);border:1px solid rgba(255,100,100,.3);border-left:4px solid #ff5a5a;border-radius:10px;padding:12px 14px;}
+.symptom-item h3{font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.symptom-item p{font-size:12px;color:rgba(255,200,200,.8);}
+.modal-cta{margin-top:20px;text-align:center;}
+.modal-cta a{display:inline-flex;align-items:center;gap:8px;padding:12px 26px;background:var(--green);color:var(--white);border-radius:50px;font-weight:900;font-size:14px;text-decoration:none;}
+
+/* SERVICES */
+#services{background:linear-gradient(180deg,#02246e 0%,#004da2 100%);}
+.service-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.service-card{border-radius:20px;padding:26px 20px;text-align:center;position:relative;overflow:hidden;transition:transform .25s,box-shadow .25s;border:1px solid rgba(255,255,255,.12);}
+.service-card::before{content:'';position:absolute;top:-40%;right:-40%;width:80%;height:80%;border-radius:50%;background:radial-gradient(circle,rgba(255,255,255,.07),transparent 70%);pointer-events:none;}
+.service-card:hover{transform:translateY(-6px);}
+.sc1{background:linear-gradient(145deg,#0096c7,#0077b6);box-shadow:0 4px 20px rgba(0,150,200,.3);}
+.sc2{background:linear-gradient(145deg,#0077b6,#023e8a);box-shadow:0 4px 20px rgba(0,100,180,.3);}
+.sc3{background:linear-gradient(145deg,#ff9f1c,#e07000);box-shadow:0 4px 20px rgba(255,140,0,.35);}
+.sc4{background:linear-gradient(145deg,#14c878,#0a8a50);box-shadow:0 4px 20px rgba(20,200,120,.3);}
+.sc5{background:linear-gradient(145deg,#7b2ff7,#5a00d0);box-shadow:0 4px 20px rgba(120,0,255,.3);}
+.sc6{background:linear-gradient(145deg,#ff6b6b,#cc3333);box-shadow:0 4px 20px rgba(255,80,80,.3);}
+.service-icon{font-size:44px;margin-bottom:10px;display:block;filter:drop-shadow(0 3px 8px rgba(0,0,0,.3));}
+.service-card h3{font-size:16px;font-weight:900;color:var(--white);margin-bottom:8px;}
+.service-card p{font-size:13px;color:rgba(255,255,255,.78);line-height:1.6;}
+.service-tag{display:inline-block;margin-top:10px;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;background:rgba(255,255,255,.18);color:var(--white);}
+
+/* PLAN */
+#plan{background:linear-gradient(180deg,#004da2 0%,#02246e 100%);}
+.plan-card{background:rgba(2,36,110,.8);border:3px solid var(--orange);border-radius:24px;padding:36px;max-width:680px;margin:0 auto;text-align:center;position:relative;overflow:hidden;}
+.plan-card::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse at 50% 0%,rgba(255,150,20,.1),transparent 60%);pointer-events:none;}
+.plan-badge{display:inline-block;background:linear-gradient(135deg,var(--orange),#ff6b00);color:var(--white);font-weight:900;font-size:13px;padding:5px 18px;border-radius:20px;margin-bottom:14px;}
+.plan-price{font-family:'Montserrat',sans-serif;font-size:62px;font-weight:900;color:var(--orange);line-height:1;}
+.plan-price small{font-size:20px;}
+.plan-sub{font-size:13px;color:rgba(224,247,255,.65);margin:6px 0 20px;}
+.plan-features{display:grid;grid-template-columns:1fr 1fr;gap:8px;text-align:left;margin:20px 0;}
+.plan-feature{display:flex;align-items:center;gap:8px;font-size:13px;background:rgba(0,230,255,.06);border:1px solid rgba(0,230,255,.15);border-radius:8px;padding:10px 12px;}
+.plan-feature::before{content:"✓";color:var(--cyan);font-weight:900;flex-shrink:0;}
+
+/* PRICE */
+#price{background:linear-gradient(180deg,#02246e 0%,#004da2 100%);}
+.price-table{width:100%;border-collapse:separate;border-spacing:0 6px;}
+.price-table th{background:rgba(0,230,255,.15);color:var(--cyan);padding:10px 16px;font-size:12px;letter-spacing:2px;}
+.price-table td{padding:12px 16px;font-size:14px;background:rgba(0,77,162,.35);}
+.price-table tr td:first-child{border-radius:8px 0 0 8px;font-weight:700;border-left:3px solid var(--cyan);}
+.price-table tr td:last-child{border-radius:0 8px 8px 0;color:var(--orange);font-weight:900;}
+.price-table tr:hover td{background:rgba(0,77,162,.6);}
+.price-note{background:rgba(0,230,255,.06);border:1px solid rgba(0,230,255,.2);border-radius:10px;padding:14px 18px;margin-top:18px;font-size:13px;color:rgba(224,247,255,.8);line-height:1.9;}
+.price-note strong{color:var(--orange);}
+
+/* AREA */
+#area{background:linear-gradient(180deg,#004da2 0%,#02246e 100%);}
+.area-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.area-card{background:rgba(0,77,162,.4);border:2px solid rgba(0,230,255,.25);border-radius:16px;padding:24px;text-align:center;}
+.area-card h3{font-size:17px;font-weight:900;color:var(--cyan);margin-bottom:6px;}
+.area-tag{font-size:26px;font-weight:900;color:var(--orange);margin:6px 0;}
+.area-card p{font-size:12px;color:rgba(224,247,255,.65);}
+
+/* CONTACT */
+#contact{background:linear-gradient(180deg,#02246e 0%,#011040 100%);}
+.contact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:16px;}
+.contact-card{border-radius:20px;padding:28px 20px;text-align:center;transition:transform .25s;}
+.contact-card:hover{transform:translateY(-5px);}
+.cc-line{background:linear-gradient(135deg,#06c755,#04a344);box-shadow:0 4px 24px rgba(6,199,85,.3);}
+.cc-ig{background:linear-gradient(135deg,#833ab4,#fd1d1d,#fcb045);box-shadow:0 4px 24px rgba(253,29,29,.3);}
+.cc-mail{background:rgba(0,77,162,.5);border:2px solid rgba(0,230,255,.3);}
+.contact-card .icon-w{width:54px;height:54px;border-radius:50%;margin:0 auto 12px;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;font-size:24px;}
+.contact-card h3{font-size:18px;font-weight:900;color:var(--white);margin-bottom:6px;}
+.contact-card p{font-size:12px;color:rgba(255,255,255,.8);margin-bottom:14px;line-height:1.6;}
+.contact-card a{display:inline-block;padding:9px 20px;border-radius:50px;background:rgba(255,255,255,.22);color:var(--white);text-decoration:none;font-weight:900;font-size:13px;transition:.2s;}
+.contact-card a:hover{background:rgba(255,255,255,.38);}
+
+/* FOOTER */
+footer{background:#010e2e;padding:36px 20px 20px;text-align:center;border-top:1px solid rgba(0,230,255,.15);}
+.footer-logo{font-family:'Montserrat',sans-serif;font-size:26px;font-weight:900;color:var(--soft);}
+.footer-logo span{color:var(--cyan);font-size:12px;font-family:'Noto Sans JP',sans-serif;display:block;margin-top:2px;letter-spacing:2px;}
+.footer-links{display:flex;gap:12px;justify-content:center;margin:14px 0;flex-wrap:wrap;}
+.footer-links a{font-size:12px;color:rgba(224,247,255,.55);text-decoration:none;}
+.footer-links a:hover{color:var(--cyan);}
+footer p{font-size:11px;color:rgba(224,247,255,.35);margin-top:6px;}
+.float-line{position:fixed;bottom:22px;right:18px;z-index:99;background:var(--green);color:var(--white);width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:26px;text-decoration:none;box-shadow:0 4px 20px rgba(20,200,120,.5);animation:pulse 2.5s ease-in-out infinite;}
+@keyframes pulse{0%,100%{box-shadow:0 4px 20px rgba(20,200,120,.5)}50%{box-shadow:0 4px 40px rgba(20,200,120,.8)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+@media(max-width:768px){
+  nav{display:none;flex-direction:column;position:fixed;top:64px;left:0;right:0;background:rgba(2,36,110,.97);padding:16px;gap:6px;border-bottom:1px solid rgba(0,230,255,.2);}
+  nav.open{display:flex;}
+  nav a{font-size:15px;padding:10px 14px;}
+  .hamburger{display:flex;}
+  .hero-lab{font-size:50px;}
+  .plan-features{grid-template-columns:1fr;}
+  .area-grid{grid-template-columns:1fr;}
+  .palm-left2,.palm-right2{display:none;}
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a href="#hero" class="logo">
+    <div class="logo-circle">
+      <svg viewBox="0 0 100 100" fill="none">
+        <polyline points="50,15 22,38 22,72 78,72 78,38 50,15" stroke="rgba(224,247,255,.9)" stroke-width="5" fill="none" stroke-linejoin="round"/>
+        <rect x="38" y="52" width="24" height="20" stroke="rgba(224,247,255,.9)" stroke-width="4" fill="none"/>
+        <circle cx="50" cy="44" r="5" fill="#00e6ff"/>
+        <circle cx="50" cy="28" r="3.5" fill="#00e6ff"/>
+        <circle cx="36" cy="50" r="3.5" fill="#00e6ff"/>
+        <circle cx="64" cy="50" r="3.5" fill="#00e6ff"/>
+        <line x1="50" y1="39" x2="50" y2="31.5" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="45" y1="46" x2="39.5" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="55" y1="46" x2="60.5" y2="50" stroke="#00e6ff" stroke-width="2"/>
+      </svg>
+    </div>
+    <div class="logo-text"><div class="umi">umi</div><div class="lab">LAB</div></div>
+  </a>
+  <nav id="nav">
+    <a href="#trouble">お困りごと</a>
+    <a href="#services">サービス</a>
+    <a href="#plan">月額プラン</a>
+    <a href="#price">料金表</a>
+    <a href="#area">エリア</a>
+    <a href="#contact" class="nav-line">LINE相談</a>
+  </nav>
+  <div class="hamburger" id="hamburger" onclick="toggleNav()"><span></span><span></span><span></span></div>
+</header>
+
+<section id="hero">
+  <div class="stars" id="stars"></div>
+  <div class="bird" style="top:18%;left:18%;--fd:3.5s;--fx:45px"><svg width="30" height="14"><path d="M0 8 Q8 2 15 6 Q22 10 30 4" stroke="rgba(255,255,255,.7)" stroke-width="2.5" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="bird" style="top:23%;left:38%;--fd:4.5s;--fx:28px;animation-delay:.5s"><svg width="22" height="10"><path d="M0 6 Q5.5 1 11 4 Q16.5 7 22 2" stroke="rgba(255,255,255,.6)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="bird" style="top:15%;right:22%;--fd:5s;--fx:-38px;animation-delay:1s"><svg width="26" height="12"><path d="M0 7 Q6.5 1 13 5 Q19.5 9 26 3" stroke="rgba(255,255,255,.65)" stroke-width="2" fill="none" stroke-linecap="round"/></svg></div>
+  <div class="sparkle" style="bottom:195px;left:14%;width:5px;height:5px;--sd:1.8s"></div>
+  <div class="sparkle" style="bottom:205px;left:28%;width:3px;height:3px;--sd:2.4s;animation-delay:.3s"></div>
+  <div class="sparkle" style="bottom:190px;left:45%;width:4px;height:4px;--sd:1.5s;animation-delay:.8s"></div>
+  <div class="sparkle" style="bottom:200px;right:28%;width:5px;height:5px;--sd:2.1s;animation-delay:.5s"></div>
+  <div class="sparkle" style="bottom:192px;right:15%;width:3px;height:3px;--sd:2.8s;animation-delay:1.2s"></div>
+  <div class="bougen" style="left:0%"><svg width="70" height="90" viewBox="0 0 70 90"><ellipse cx="18" cy="32" rx="13" ry="8" fill="#ff6eb0" transform="rotate(-35 18 32)" opacity=".9"/><ellipse cx="38" cy="20" rx="12" ry="7" fill="#ff4da0" transform="rotate(18 38 20)" opacity=".85"/><ellipse cx="52" cy="44" rx="11" ry="7" fill="#ff80bc" transform="rotate(-12 52 44)" opacity=".85"/><ellipse cx="28" cy="58" rx="12" ry="7" fill="#ff6eb0" transform="rotate(14 28 58)" opacity=".8"/><ellipse cx="10" cy="62" rx="10" ry="6" fill="#ff4da0" transform="rotate(-22 10 62)" opacity=".75"/></svg></div>
+  <div class="bougen" style="right:0%"><svg width="70" height="90" viewBox="0 0 70 90"><ellipse cx="52" cy="32" rx="13" ry="8" fill="#ff9f1c" transform="rotate(35 52 32)" opacity=".9"/><ellipse cx="32" cy="20" rx="12" ry="7" fill="#ffb347" transform="rotate(-18 32 20)" opacity=".85"/><ellipse cx="18" cy="44" rx="11" ry="7" fill="#ff9f1c" transform="rotate(12 18 44)" opacity=".85"/><ellipse cx="42" cy="58" rx="12" ry="7" fill="#ffc04a" transform="rotate(-14 42 58)" opacity=".8"/><ellipse cx="60" cy="62" rx="10" ry="6" fill="#ffb347" transform="rotate(22 60 62)" opacity=".75"/></svg></div>
+  <div class="palm palm-left"><svg width="155" height="265" viewBox="0 0 140 260" fill="none"><path d="M75 260 Q72 218 68 182 Q65 148 62 118 Q60 92 64 70" stroke="#7a4a1a" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M75 260 Q79 218 76 182 Q73 148 69 118 Q67 92 64 70" stroke="#a06830" stroke-width="8" fill="none" stroke-linecap="round" opacity=".4"/><path d="M64 70 Q12 50 0 14 Q36 34 58 66" stroke="#1a7a30" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q8 78 -2 58 Q26 66 58 78" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M64 70 Q44 36 58 2 Q60 38 66 68" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q98 44 120 16 Q92 48 68 70" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q108 70 132 54 Q100 70 70 82" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M64 70 Q28 52 14 28 Q44 48 62 68" stroke="#2ab84e" stroke-width="8" fill="none" stroke-linecap="round" opacity=".8"/><ellipse cx="50" cy="84" rx="9" ry="10" fill="#5c3008"/><ellipse cx="66" cy="91" rx="9" ry="10" fill="#6b3a0a"/><ellipse cx="80" cy="84" rx="8" ry="9" fill="#5c3008"/></svg></div>
+  <div class="palm palm-left2"><svg width="110" height="200" viewBox="0 0 140 260" fill="none"><path d="M75 260 Q72 218 68 182 Q65 148 62 118 Q60 92 64 70" stroke="#7a4a1a" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M64 70 Q12 50 0 14 Q36 34 58 66" stroke="#1a7a30" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q8 78 -2 58 Q26 66 58 78" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M64 70 Q44 36 58 2 Q60 38 66 68" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q98 44 120 16 Q92 48 68 70" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q108 70 132 54 Q100 70 70 82" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="84" rx="9" ry="10" fill="#5c3008"/><ellipse cx="66" cy="91" rx="9" ry="10" fill="#6b3a0a"/></svg></div>
+  <div class="palm palm-right"><svg width="155" height="265" viewBox="0 0 140 260" fill="none"><path d="M75 260 Q72 218 68 182 Q65 148 62 118 Q60 92 64 70" stroke="#7a4a1a" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M75 260 Q79 218 76 182 Q73 148 69 118 Q67 92 64 70" stroke="#a06830" stroke-width="8" fill="none" stroke-linecap="round" opacity=".4"/><path d="M64 70 Q12 50 0 14 Q36 34 58 66" stroke="#1a7a30" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q8 78 -2 58 Q26 66 58 78" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M64 70 Q44 36 58 2 Q60 38 66 68" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q98 44 120 16 Q92 48 68 70" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q108 70 132 54 Q100 70 70 82" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M64 70 Q28 52 14 28 Q44 48 62 68" stroke="#2ab84e" stroke-width="8" fill="none" stroke-linecap="round" opacity=".8"/><ellipse cx="50" cy="84" rx="9" ry="10" fill="#5c3008"/><ellipse cx="66" cy="91" rx="9" ry="10" fill="#6b3a0a"/><ellipse cx="80" cy="84" rx="8" ry="9" fill="#5c3008"/></svg></div>
+  <div class="palm palm-right2"><svg width="110" height="200" viewBox="0 0 140 260" fill="none"><path d="M75 260 Q72 218 68 182 Q65 148 62 118 Q60 92 64 70" stroke="#7a4a1a" stroke-width="14" fill="none" stroke-linecap="round"/><path d="M64 70 Q12 50 0 14 Q36 34 58 66" stroke="#1a7a30" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q8 78 -2 58 Q26 66 58 78" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><path d="M64 70 Q44 36 58 2 Q60 38 66 68" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q98 44 120 16 Q92 48 68 70" stroke="#22963c" stroke-width="10" fill="none" stroke-linecap="round"/><path d="M64 70 Q108 70 132 54 Q100 70 70 82" stroke="#1a7a30" stroke-width="9" fill="none" stroke-linecap="round"/><ellipse cx="50" cy="84" rx="9" ry="10" fill="#5c3008"/><ellipse cx="66" cy="91" rx="9" ry="10" fill="#6b3a0a"/></svg></div>
+  <div class="island island-l"></div>
+  <div class="island island-r"></div>
+  <div class="hero-logo-wrap">
+    <div class="hero-logo-circle">
+      <svg viewBox="0 0 100 100" fill="none">
+        <polyline points="50,12 18,36 18,74 82,74 82,36 50,12" stroke="rgba(224,247,255,.95)" stroke-width="4" fill="none" stroke-linejoin="round"/>
+        <rect x="36" y="52" width="28" height="22" stroke="rgba(224,247,255,.95)" stroke-width="3.5" fill="none"/>
+        <circle cx="50" cy="42" r="6" fill="#00e6ff"/>
+        <circle cx="50" cy="24" r="4" fill="#00e6ff"/>
+        <circle cx="32" cy="50" r="4" fill="#00e6ff"/>
+        <circle cx="68" cy="50" r="4" fill="#00e6ff"/>
+        <line x1="50" y1="36" x2="50" y2="28" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="44" y1="44" x2="36" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="56" y1="44" x2="64" y2="50" stroke="#00e6ff" stroke-width="2"/>
+        <line x1="36" y1="50" x2="64" y2="50" stroke="#00e6ff" stroke-width="1.5" opacity=".5"/>
+      </svg>
+    </div>
+    <div class="hero-umi">umi</div>
+    <div class="hero-lab">LAB</div>
+    <div class="hero-tagline">名護市・北部エリア IT サポート</div>
+  </div>
+  <div class="hero-catch">
+    <h1>パソコン・Wi-Fi・ネットワーク<br><span>お困りごとはお任せください</span></h1>
+    <p>設定・修理・購入サポート・月額保守サービス ／ 業界最安値で対応</p>
+  </div>
+  <div class="hero-btns">
+    <a href="https://lin.ee/n0T3WqR" class="btn btn-line" target="_blank">LINE で相談する</a>
+    <a href="#services" class="btn btn-primary">サービスを見る</a>
+    <a href="#price" class="btn btn-outline">料金表</a>
+  </div>
+  <div class="wave-container">
+    <div class="wave wave1"></div>
+    <div class="wave wave2"></div>
+    <div class="wave wave3"></div>
+  </div>
+</section>
+
+<section id="trouble">
+  <div class="container">
+    <div class="section-title reveal"><div class="label">TROUBLE</div><h2>こんなお困り、ありませんか？</h2><p>タップすると詳しい症状をご確認いただけます</p></div>
+    <div class="trouble-list reveal">
+      <a class="trouble-link" href="#" onclick="openModal('pc');return false;">パソコンが起動しない・動かない<span class="arr">›</span></a>
+      <a class="trouble-link" href="#" onclick="openModal('wifi');return false;">Wi-Fi・インターネットに繋がらない<span class="arr">›</span></a>
+      <a class="trouble-link" href="#" onclick="openModal('mail');return false;">メール・Officeの設定ができない<span class="arr">›</span></a>
+      <a class="trouble-link" href="#" onclick="openModal('printer');return false;">プリンターが動かない・設定できない<span class="arr">›</span></a>
+      <a class="trouble-link" href="#" onclick="openModal('slow');return false;">パソコンが遅い・フリーズする<span class="arr">›</span></a>
+      <a class="trouble-link" href="#" onclick="openModal('buy');return false;">パソコン・プリンターを購入したい<span class="arr">›</span></a>
+    </div>
+    <div class="solve-banner reveal"><span>umiLABが</span>全部解決します！</div>
+  </div>
+</section>
+
+<div class="modal-overlay" id="modal" onclick="closeModalOutside(event)">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modal-title"></h2>
+    <div class="modal-sub" id="modal-sub"></div>
+    <div class="symptom-list" id="modal-symptoms"></div>
+    <div class="modal-cta"><a href="https://lin.ee/n0T3WqR" target="_blank">LINE でまずは相談する（無料）</a></div>
+  </div>
+</div>
+
+<section id="services">
+  <div class="container">
+    <div class="section-title reveal"><div class="label">SERVICES</div><h2>サービス内容</h2><p>パソコン・プリンター・ネットワーク、販売から設定・修理まで全対応</p></div>
+    <div class="service-grid">
+      <div class="service-card sc1 reveal"><span class="service-icon">💻</span><h3>PC セットアップ・設定</h3><p>新しいパソコンの初期設定からメール・Wi-Fi接続まで丁寧に対応します</p><span class="service-tag">メール設定含む</span></div>
+      <div class="service-card sc2 reveal"><span class="service-icon">📶</span><h3>Wi-Fi ルーター設定</h3><p>ルーター側・端末側どちらも対応。繋がらない原因を現場で調査・解決</p><span class="service-tag">出張対応</span></div>
+      <div class="service-card sc3 reveal"><span class="service-icon">🔧</span><h3>修理・症状診断</h3><p>診断・見積もりは無料。できるだけ安く、丁寧に対応します</p><span class="service-tag">診断無料</span></div>
+      <div class="service-card sc4 reveal"><span class="service-icon">🖨️</span><h3>PC・プリンター購入</h3><p>用途に合った機種を選定。購入から設置・設定まで全てお任せ</p><span class="service-tag">見積もり無料</span></div>
+      <div class="service-card sc5 reveal"><span class="service-icon">📧</span><h3>メール・Office 設定</h3><p>各種メールソフト・Officeアカウントの設定に対応します</p><span class="service-tag">各種対応</span></div>
+      <div class="service-card sc6 reveal"><span class="service-icon">💾</span><h3>データ復元・バックアップ</h3><p>大切なデータの復元や定期バックアップの設定をサポートします</p><span class="service-tag">要相談</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="plan">
+  <div class="container">
+    <div class="section-title reveal"><div class="label">MONTHLY PLAN</div><h2>umiLAB 月額保守サービス</h2><p>業界最安値。いつでも相談できる安心のサポートプラン</p></div>
+    <div class="plan-card reveal">
+      <div class="plan-badge">月額プラン　業界最安値！</div>
+      <div class="plan-price">¥<span>5,000</span><small>／月</small></div>
+      <div class="plan-sub">PC1台から対応　個人・法人問わずOK</div>
+      <div class="plan-features">
+        <div class="plan-feature">パソコン不具合・設定</div>
+        <div class="plan-feature">ネットワークの不具合</div>
+        <div class="plan-feature">Excel・PDF・Office関係</div>
+        <div class="plan-feature">メール・ホームページ</div>
+        <div class="plan-feature">全トラブル現場対応</div>
+        <div class="plan-feature">他社見積もりより安く</div>
+      </div>
+      <a href="https://lin.ee/n0T3WqR" class="btn btn-line" target="_blank" style="margin-top:8px">LINE で詳細を聞く</a>
+    </div>
+  </div>
+</section>
+
+<section id="price">
+  <div class="container">
+    <div class="section-title reveal"><div class="label">PRICE</div><h2>料金表</h2><p>税込・現金のみ。他社見積もりがあればそれより安く対応します</p></div>
+    <div class="reveal">
+      <table class="price-table">
+        <thead><tr><th style="border-radius:8px 0 0 0">サービス内容</th><th style="border-radius:0 8px 0 0">料金</th></tr></thead>
+        <tbody>
+          <tr><td>PCセットアップ（メール・Office設定含む）</td><td>¥5,000〜</td></tr>
+          <tr><td>Wi-Fiルーター設定</td><td>¥7,000〜</td></tr>
+          <tr><td>メール設定</td><td>¥2,000〜</td></tr>
+          <tr><td>症状診断・見積もり</td><td>無料</td></tr>
+          <tr><td>PC・プリンター購入サポート</td><td>見積もり無料</td></tr>
+          <tr><td>出張料（名護エリア）</td><td>無料</td></tr>
+          <tr><td>出張料（北部エリア）</td><td>¥1,500〜</td></tr>
+          <tr><td>月額保守サービス</td><td>¥5,000／月</td></tr>
+        </tbody>
+      </table>
+      <div class="price-note">
+        <strong>支払い方法：</strong>現金のみ（税込）<br>
+        <strong>部品代：</strong>別途実費となります<br>
+        <strong>他社見積もり：</strong>お持ちの見積もりより安く対応します！<br>
+        <strong>修理・購入：</strong>状況確認後すぐに見積もりをご提示。ご検討の上ご判断ください
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="area">
+  <div class="container">
+    <div class="section-title reveal"><div class="label">SERVICE AREA</div><h2>対応エリア</h2><p>名護市を拠点に北部エリア全域に対応しています</p></div>
+    <div class="area-grid reveal">
+      <div class="area-card"><h3>名護市エリア</h3><div class="area-tag">出張料 無料</div><p>名護市内は出張料無料でお伺いします</p></div>
+      <div class="area-card"><h3>北部エリア</h3><div class="area-tag">¥1,500〜</div><p>恩納村・本部町・今帰仁村・国頭村など北部全域</p></div>
+    </div>
+    <div style="text-align:center;margin-top:18px;font-size:13px;color:rgba(224,247,255,.55)" class="reveal">エリア外の方もまずはご相談ください。業界経験10年以上の実績でお客様に寄り添います。</div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="container">
+    <div class="section-title reveal"><div class="label">CONTACT</div><h2>お気軽にご連絡ください</h2><p>小さなことでもお気軽に。作業中・夜間は返信が遅れる場合があります</p></div>
+    <div class="contact-grid">
+      <div class="contact-card cc-line reveal"><div class="icon-w">💬</div><h3>LINE公式</h3><p>お困りの内容・写真・お住まいを送るだけ。急ぎの方は「急ぎ」と一言添えて</p><a href="https://lin.ee/n0T3WqR" target="_blank">友だち追加はこちら</a></div>
+      <div class="contact-card cc-ig reveal"><div class="icon-w">📸</div><h3>Instagram</h3><p>最新情報・お役立ち情報を発信中。DMでのご相談もOK</p><a href="https://www.instagram.com/umilab.nago2026/" target="_blank">@umilab.nago2026</a></div>
+      <div class="contact-card cc-mail reveal"><div class="icon-w">✉</div><h3>メール</h3><p>法人・企業様からのお問い合わせ、見積もり依頼はメールでも承ります</p><a href="mailto:umi.nago2026@gmail.com">umi.nago2026@gmail.com</a></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">umiLAB<span>名護市・北部エリア IT サポート</span></div>
+  <div class="footer-links">
+    <a href="#trouble">お困りごと</a><a href="#services">サービス</a><a href="#plan">月額プラン</a>
+    <a href="#price">料金表</a><a href="#area">対応エリア</a><a href="#contact">お問い合わせ</a>
+  </div>
+  <p><a href="mailto:umi.nago2026@gmail.com" style="color:var(--cyan);text-decoration:none">umi.nago2026@gmail.com</a>　<a href="https://www.instagram.com/umilab.nago2026/" target="_blank" style="color:var(--cyan);text-decoration:none">@umilab.nago2026</a></p>
+  <p style="margin-top:6px">&copy; 2026 umiLAB All Rights Reserved.</p>
+</footer>
+
+<a href="https://lin.ee/n0T3WqR" class="float-line" target="_blank">💬</a>
+
+<script>
+(function(){
+  const h=document.getElementById('stars');
+  for(let i=0;i<80;i++){
+    const s=document.createElement('div');s.className='star';
+    const sz=Math.random()*2.5+.5;
+    s.style.cssText=`width:${sz}px;height:${sz}px;top:${Math.random()*100}%;left:${Math.random()*100}%;--d:${(Math.random()*3+1).toFixed(1)}s;animation-delay:${(Math.random()*4).toFixed(1)}s`;
+    h.appendChild(s);
+  }
+})();
+function toggleNav(){document.getElementById('nav').classList.toggle('open');}
+const modalData={
+  pc:{title:'パソコンが起動しない・動かない',sub:'電源周りから内部パーツまで、現場で原因を調査します',symptoms:[
+    {h:'電源は入るのに画面が真っ暗、全く反応しない！',p:'電源ボタンを押してもランプが点くだけで画面に何も映らない状態'},
+    {h:'起動中にクルクルが止まらない、ずっとロード中…',p:'Windowsのロゴで止まってしまい、デスクトップ画面まで進まない'},
+    {h:'突然シャットダウンして再起動を繰り返す',p:'使っている途中に急に電源が落ちて、また起動しようとする'},
+    {h:'ブルースクリーンが出て使えない',p:'青い画面にエラーコードが表示されてパソコンが使えない状態'}
+  ]},
+  wifi:{title:'Wi-Fi・インターネットに繋がらない',sub:'ルーター側・端末側どちらの原因かも現場で確認します',symptoms:[
+    {h:'Wi-Fiのマークはあるのにネットが使えない！',p:'繋がってはいるように見えるのに、ブラウザが開けない・動かない'},
+    {h:'スマホは繋がるのにパソコンだけ繋がらない',p:'他の機器は正常なのにパソコンだけWi-Fiに接続できない'},
+    {h:'ルーターを再起動しても直らない',p:'電源を切り入りしても改善しない。設定がリセットされてしまった'},
+    {h:'引っ越し・工事後からネットが使えなくなった',p:'光回線の工事後や引っ越し後からインターネットが繋がらない'}
+  ]},
+  mail:{title:'メール・Officeの設定ができない',sub:'各種メールソフト・Officeのアカウント設定に対応します',symptoms:[
+    {h:'メールアプリにアカウントを追加できない',p:'設定画面でサーバー情報を入力してもエラーになってしまう'},
+    {h:'メールが送れない・受信できない',p:'今まで使えていたのに突然送受信ができなくなってしまった'},
+    {h:'Officeのライセンス認証ができない',p:'WordやExcelを開くと「ライセンス認証が必要」と表示される'},
+    {h:'新しいパソコンにメールの設定を移したい',p:'古いパソコンからメールデータや設定を新しいパソコンに移行したい'}
+  ]},
+  printer:{title:'プリンターが動かない・設定できない',sub:'接続設定から動作確認まで現場で対応します',symptoms:[
+    {h:'新しく買ったプリンターがパソコンに認識されない',p:'USBで繋いでもWi-Fiで繋いでもプリンターが見つからない'},
+    {h:'印刷しようとするとエラーが出て印刷できない',p:'プリントを実行してもエラーメッセージが出て印刷できない'},
+    {h:'以前は使えていたのに急に反応しなくなった',p:'パソコンのアップデート後や引っ越し後から印刷できなくなった'},
+    {h:'スキャンやコピーの設定がわからない',p:'複合機のスキャン機能をパソコンで使いたいが設定方法がわからない'}
+  ]},
+  slow:{title:'パソコンが遅い・フリーズする',sub:'原因を診断して最適な対処法をご提案します',symptoms:[
+    {h:'電源を入れてから使えるまでに10分以上かかる',p:'起動が異常に遅くて、デスクトップが表示されるまで待たされる'},
+    {h:'アプリを開くたびに固まって動かなくなる',p:'ExcelやWordを開こうとするだけでくるくる回って応答しなくなる'},
+    {h:'動画を見ていると途中でフリーズ・強制終了する',p:'YouTubeや動画ファイルを再生していると突然止まってしまう'},
+    {h:'前は速かったのに最近急に遅くなった',p:'数年使ってきたパソコンが最近特に遅く感じるようになった'}
+  ]},
+  buy:{title:'パソコン・プリンターを購入したい',sub:'用途や予算に合った機種を一緒に選んで、設置まで全対応します',symptoms:[
+    {h:'どのパソコンを買えばいいか全くわからない',p:'種類が多すぎてスペックの見方や選び方がわからない'},
+    {h:'仕事用・家庭用・子ども用、用途に合ったものが欲しい',p:'使う目的に合わせた最適な機種を提案してほしい'},
+    {h:'買った後の設定が不安、使いこなせるか心配',p:'購入後のセットアップや操作方法も教えてもらいたい'},
+    {h:'業者最安値で購入したい',p:'量販店より安く購入できる。他社見積もりがあればそれより安く対応'}
+  ]}
+};
+function openModal(k){
+  const d=modalData[k];
+  document.getElementById('modal-title').textContent=d.title;
+  document.getElementById('modal-sub').textContent=d.sub;
+  document.getElementById('modal-symptoms').innerHTML=d.symptoms.map(s=>`<div class="symptom-item"><h3>${s.h}</h3><p>${s.p}</p></div>`).join('');
+  document.getElementById('modal').classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('modal').classList.remove('open');document.body.style.overflow='';}
+function closeModalOutside(e){if(e.target.id==='modal')closeModal();}
+const obs=new IntersectionObserver((entries)=>{
+  entries.forEach((e,i)=>{if(e.isIntersecting)setTimeout(()=>e.target.classList.add('visible'),i*80);});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(r=>obs.observe(r));
+const secs=document.querySelectorAll('section[id]');
+window.addEventListener('scroll',()=>{
+  let cur='';secs.forEach(s=>{if(window.scrollY>=s.offsetTop-80)cur=s.id;});
+  document.querySelectorAll('nav a').forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+cur));
+});
+</script>
+</body>
+</html>
