@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://umilab2026.github.io/umiLAB/sitemap.xml
